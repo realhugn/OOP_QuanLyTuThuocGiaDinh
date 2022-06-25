@@ -1,5 +1,7 @@
 package Medicine;
 
+import java.util.Date;
+
 public class DungCu extends Product{
     private String use;
 
@@ -8,10 +10,19 @@ public class DungCu extends Product{
         this.use = use;
     }
 
+    public String getUse() {
+        return use;
+    }
+
+    public void setUse(String use) {
+        this.use = use;
+    }
+
     @Override
     public void showInfo(){
         super.showInfo();
         System.out.println("Uses: "+ this.use);
     }
+//    public Date getExpiredDate()
 
 }

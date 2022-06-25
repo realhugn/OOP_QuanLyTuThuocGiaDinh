@@ -1,5 +1,6 @@
 package Medicine.controller;
 
+import Medicine.DungCu;
 import Medicine.Product;
 import Medicine.Thuoc;
 
@@ -53,6 +54,11 @@ public class ProductController {
         Thuoc thuoc = (Thuoc)findMedicineByID(productID);
         thuoc.setExpiredDate(date);
     }
+    public void editUses(int productID, String uses){
+        DungCu dungCu = (DungCu)findMedicineByID(productID);
+        dungCu.setUse(uses);
+    }
+
     public Product findMedicineByID(int productID){
         for (Product product : list) {
             if (product.getProductID() == productID) {
@@ -60,5 +66,30 @@ public class ProductController {
             }
         }
         return null;
+    }
+
+    public void sortById() {
+        list.sort((x1,x2) -> {
+            int cmp = x1.getProductID()-(x2.getProductID());
+            return cmp;
+        });
+    }
+    public void sortByName() {
+        list.sort((x1,x2) -> {
+            int cmp = x1.getName().compareTo(x2.getName());
+            return cmp;
+        });
+    }
+    public void sortByExpiredDate() {
+        ArrayList<Thuoc> listThuoc = new ArrayList<Thuoc>();
+        ArrayList<DungCu> listDungCu = new ArrayList<DungCu>();
+        for (Product x : list){
+            if(x instanceof Thuoc) listThuoc.add((Thuoc)x);
+            else if(x instanceof DungCu) listDungCu.add((DungCu)x);
+        }
+        listThuoc.sort((x1,x2) -> x1.getExpiredDate().compareTo(x2.getExpiredDate()));
+        list.removeAll(list);
+        list.addAll(listThuoc);
+        list.addAll(listDungCu);
     }
 }

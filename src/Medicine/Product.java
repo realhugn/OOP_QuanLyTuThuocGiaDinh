@@ -65,5 +65,10 @@ public abstract class Product {
         System.out.println("Link: "+this.getLink());
         System.out.println("Unit: "+this.getUnit());
     }
-
+    public boolean checkType(Product x){
+        if (x instanceof Thuoc){
+            return true;
+        }
+        return false;
+    }
 }

@@ -32,15 +32,16 @@ public class Program {
         System.out.println("----------------------------------------------");
     }
     public static void showTuThuoc(){
-        tuthuoc.testadd();
         tuthuoc.controller.addMedicine(4,"hung",6,"a","34",date,"none");
+        tuthuoc.testadd();
 //      tuthuoc.controller.removeMedicine(3);
-        tuthuoc.controller.edit(1,4,"depzai");
+        tuthuoc.controller.sortByExpiredDate();
         System.out.println("Tong so luong trong tu:" + tuthuoc.total());
         for (Product x : tuthuoc.getListProduct()){
             header();
             x.showInfo();
             header();
+            System.out.println(x.checkType(x));
             System.out.println("");
         }
     }
